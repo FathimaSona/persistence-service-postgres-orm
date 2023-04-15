@@ -2,6 +2,7 @@ import cors from "cors";
 import express, { json } from "express";
 import postgresDataSource from "./strategy/postgresql";
 import PhotoApi from "./strategy/postgresql/photo";
+import MechanicApi from "./strategy/postgresql/mechanic/mechanicApi";
 import TruckApi from "./strategy/postgresql/truck";
 import EmployeesApi from "./strategy/postgresql/employees";
 import DriversApi from "./strategy/postgresql/drivers";
@@ -26,6 +27,7 @@ import { Employees } from "./strategy/postgresql/employees";
   new CustomerApi(datasource, app);
   new ShipmentsApi(datasource, app);
   new TrucktripApi(datasource, app);
+  new MechanicApi(datasource,app);
 
   const employee = new Employees()
   employee.empNumber = 3

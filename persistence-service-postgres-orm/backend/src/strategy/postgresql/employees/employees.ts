@@ -8,7 +8,7 @@ export class Employees {
   @Column({
     length: 20,
   })
-  FirstName : string;
+  firstName : string;
 
   @Column({
     length: 20,

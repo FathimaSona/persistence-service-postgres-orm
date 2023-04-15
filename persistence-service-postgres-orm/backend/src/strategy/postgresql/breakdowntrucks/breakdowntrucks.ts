@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Truck } from "../truck";
 
 @Entity()
 export class Breakdowntrucks {
@@ -13,5 +14,8 @@ export class Breakdowntrucks {
 
   @Column()
   estimatedTime : number;
+
+  @ManyToOne(() => Truck, (truck: Truck) => truck.breakdownTrucks)
+  truck: Truck;
 
 }

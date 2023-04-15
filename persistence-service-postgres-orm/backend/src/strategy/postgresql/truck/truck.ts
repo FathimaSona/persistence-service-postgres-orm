@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
+import { Breakdowntrucks } from "../breakdowntrucks";
+import { Mechanic } from "../mechanic";
+import { Trucktrip } from "../trucktrip";
 
 @Entity()
 export class Truck {
@@ -7,19 +10,29 @@ export class Truck {
 
   @Column({
     length: 20,
+    required: true
   })
-  Brand : string;
+  brand : string;
 
   @Column()
-  Load : number;
+  load : number;
 
   @Column()
-  Capacity : number;
+  capacity : number;
 
   @Column()
-  Year : number;
+  year : number;
 
   @Column()
-  Repairs : number;
+  numRepairs : number;
+
+  @OneToMany(() => Breakdowntrucks, (breakdowntrucks:   Breakdowntrucks) => breakdowntrucks.truck)
+  breakdownTrucks: Breakdowntrucks[];
+
+  @ManyToOne(() => Mechanic, (mechanic: Mechanic) => mechanic.trucks)
+  mechanic: Mechanic;
+
+  @OneToMany(() => Trucktrip, (truckTrip: Trucktrip) => truckTrip.truck)
+  truckTrips: Trucktrip[];
 
 }

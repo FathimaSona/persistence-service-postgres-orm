@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Truck } from "../truck";
 
 @Entity()
-export class Mechanic {
+export class Mechanic{
   @PrimaryGeneratedColumn()
   mechanicId: number;
 
@@ -9,5 +10,8 @@ export class Mechanic {
     length: 100,
   })
   brandSpecialist: string;
+
+  @OneToMany(() => Truck, (truck:   Truck) => truck.mechanic);
+  trucks: Truck[];
 
 }
